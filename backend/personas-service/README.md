@@ -17,18 +17,18 @@
 
 ```sh
 # get all personas
-curl http://localhost:3000/api/personas
+curl http://localhost:3001/api/personas
 
 # create persona
-curl -X POST http://localhost:3000/api/personas -H "Content-Type: application/json" -d '{"nombre": "Ana"}'
+curl -X POST http://localhost:3001/api/personas -H "Content-Type: application/json" -d '{"nombre": "Ana"}'
 
 # get persona
-curl http://localhost:3000/api/personas/1
+curl http://localhost:3001/api/personas/1
 
 # update persona
-curl -X PUT http://localhost:3000/api/personas/1 -H "Content-Type: application/json" -d '{"nombre": "Betty"}'
+curl -X PUT http://localhost:3001/api/personas/1 -H "Content-Type: application/json" -d '{"nombre": "Betty"}'
 
 # delete persona
-curl -X DELETE http://localhost:3000/api/personas/1
+curl -X DELETE http://localhost:3001/api/personas/1
 
 ```
