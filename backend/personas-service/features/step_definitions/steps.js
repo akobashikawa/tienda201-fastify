@@ -5,34 +5,20 @@ const { assertThat, is, not, containsString, hasProperty } = require('hamjest');
 // const { app } = require('../../server');
 const app = require('../../app');
 
-let producto;
+let persona;
 
-async function resetTableProductos() {
-    await app.sequelize.query('DELETE FROM Productos');
-    await app.sequelize.query('DELETE FROM sqlite_sequence WHERE name="Productos"');
-    this.producto = await app.services.productosService.createItem({
-        nombre: 'Producto Nuevo',
-        costo: 10,
-        precio: 15,
-        cantidad: 10,
-    });
-}
-
-async function resetTableVentas() {
-    await resetTableProductos();
-    await app.sequelize.query('DELETE FROM Ventas');
-    await app.sequelize.query('DELETE FROM sqlite_sequence WHERE name="Ventas"');
-    this.venta = await app.services.ventasService.createItem({
-        producto_id: this.producto.id,
-        precio: 15,
-        cantidad: 1,
+async function resetTablePersonas() {
+    await app.sequelize.query('DELETE FROM Personas');
+    await app.sequelize.query('DELETE FROM sqlite_sequence WHERE name="Personas"');
+    this.persona = await app.services.personasService.createItem({
+        nombre: 'Ana',
     });
 }
 
 BeforeAll(async function () {
     // browser = await puppeteer.launch();
     // page = await browser.newPage();
-    // await resetTableProductos();
+    // await resetTablePersonas();
 });
 
 AfterAll(async function () {
@@ -63,17 +49,17 @@ Then('debería recibir una respuesta con un código de estado {int}', function (
     assertThat(this.response.statusCode, is(statusCode));
 });
 
-Then('la respuesta debería contener una lista de productos', async function () {
+Then('la respuesta debería contener una lista de personas', async function () {
     // const body = await this.response.text();
-    // assertThat(body, containsString('productos'));
+    // assertThat(body, containsString('personas'));
     assertThat(Array.isArray(this.responseBody), is(true));
 });
 
 
-Given('que existe un producto con id {int}', async function (id) {
-    await resetTableProductos();
-    const producto = await app.services.productosService.getItemById(id);
-    assertThat(producto.id, id);
+Given('que existe una persona con id {int}', async function (id) {
+    await resetTablePersonas();
+    const persona = await app.services.personasService.getItemById(id);
+    assertThat(persona.id, id);
 });
 
 When('hago una solicitud POST a {string} con el siguiente cuerpo:', async function (route, body) {
@@ -99,22 +85,21 @@ When('hago una solicitud POST a {string} con el siguiente cuerpo:', async functi
     this.responseBody = await this.response.json();
 });
 
-Then('la respuesta debería contener un producto con el nombre {string} y precio {float}', async function (nombre, precio) {
+Then('la respuesta debería contener una persona con el nombre {string}', async function (nombre) {
     assertThat(this.responseBody, hasProperty('nombre', nombre));
-    assertThat(this.responseBody, hasProperty('precio', precio));
 });
 
 
-Then('la respuesta debería contener un producto con el id {int}', async function (id) {
+Then('la respuesta debería contener una persona con el id {int}', async function (id) {
     assertThat(this.responseBody, hasProperty('id', id));
 });
 
-Given('que no existe un producto con id {int}', async function (id) {
+Given('que no existe una persona con id {int}', async function (id) {
     try {
-        await app.services.productosService.deleteItem(id);
+        await app.services.personasService.deleteItem(id);
     } catch(error) {}
-    let producto = await app.services.productosService.getItemById(id);
-    assertThat(producto, null);
+    let persona = await app.services.personasService.getItemById(id);
+    assertThat(persona, null);
 });
 
 When('hago una solicitud PUT a {string} con el siguiente payload:', async function (route, body) {
@@ -129,7 +114,7 @@ When('hago una solicitud PUT a {string} con el siguiente payload:', async functi
     this.responseBody = await this.response.json();
 });
 
-Then('la respuesta debería contener el producto con id {int} actualizado con nombre {string}', async function (id, nombre) {
+Then('la respuesta debería contener la persona con id {int} actualizado con nombre {string}', async function (id, nombre) {
     assertThat(this.responseBody, hasProperty('id', id));
     assertThat(this.responseBody, hasProperty('nombre', nombre));
 });
@@ -142,9 +127,9 @@ When('hago una solicitud DELETE a {string}', async function (route) {
     this.responseBody = await this.response.json();
 });
 
-Then('el producto con id {int} ya no debería existir en la base de datos', async function (id) {
-    const producto = await app.services.productosService.getItemById(id);;
-    assertThat(producto, is(null));
+Then('la persona con id {int} ya no debería existir en la base de datos', async function (id) {
+    const persona = await app.services.personasService.getItemById(id);;
+    assertThat(persona, is(null));
 });
 
 Then('la respuesta debería contener el mensaje {string}', async function (message) {
