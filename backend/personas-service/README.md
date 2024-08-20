@@ -1,4 +1,4 @@
-# Tienda101 - Fastify
+# Tienda201 - Fastify - Personas
 
 ## Hexagonal
 
@@ -16,24 +16,6 @@
 ## curl
 
 ```sh
-# get all productos
-curl http://localhost:3000/api/productos
-
-# create producto
-curl -X POST http://localhost:3000/api/productos -H "Content-Type: application/json" -d '{"nombre": "Producto Nuevo", "precio": 15, "costo": 10, "cantidad": 10}'
-
-# get producto
-curl http://localhost:3000/api/productos/1
-
-# update producto
-curl -X PUT http://localhost:3000/api/productos/1 -H "Content-Type: application/json" -d '{"nombre": "Producto Actualizado", "precio": 20, "costo": 10, "cantidad": 5}'
-
-curl -X PUT http://localhost:3000/api/productos/1 -H "Content-Type: application/json" -d '{"cantidad": 6}'
-
-# delete producto
-curl -X DELETE http://localhost:3000/api/productos/1
-
-
 # get all personas
 curl http://localhost:3000/api/personas
 
@@ -49,28 +31,4 @@ curl -X PUT http://localhost:3000/api/personas/1 -H "Content-Type: application/j
 # delete persona
 curl -X DELETE http://localhost:3000/api/personas/1
 
-
-# get all ventas
-curl http://localhost:3000/api/ventas
-
-# create venta
-curl -X POST http://localhost:3000/api/ventas -H "Content-Type: application/json" -d '{"persona_id": 1, "producto_id": 1, "precio": 15, "cantidad": 1}'
-
-
-
 ```
-
-## bash
-
-```sh
-for file in producto*; do mv $file $(echo $file | sed 's/productos-/ventas-/'); done
-```
-
-## To Do
-
-- Mejorar el testing
-    - Cómo probar features aisladamente
-    - Cómo probar capas aisladamente
-- Implementar un CLI
-- Implementar scaffolding
-- Cómo sería implementar la tienda en Nest Fastify
