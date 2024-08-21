@@ -13,11 +13,9 @@ class VentasService {
     async getItems() {
         const ventas = await this.ventasRepository.getItems();
         for (let venta of ventas) {
-            venta.dataValues = {};
             venta.dataValues.Producto = await this.productosService.getItemById(venta.producto_id);
             venta.dataValues.Persona = await this.personasService.getItemById(venta.persona_id);
         }
-        console.log(ventas)
         return ventas;
     }
 
@@ -26,7 +24,6 @@ class VentasService {
         if (!venta) {
             return null;
         }
-        venta.dataValues = {};
         venta.dataValues.Producto = await this.productosService.getItemById(venta.producto_id);
         venta.dataValues.Persona = await this.personasService.getItemById(venta.persona_id);
         return venta;
