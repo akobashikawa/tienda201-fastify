@@ -8,9 +8,9 @@
 
 ## Servicios
 
-- **Personas Service**
-    - PORT: 3001
 - **Productos Service**
+    - PORT: 3001
+- **Personas Service**
     - PORT: 3002
 - **Ventas Service**
     - PORT: 3003
