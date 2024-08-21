@@ -1,4 +1,4 @@
-# Tienda201 - Fastify - Personas
+# Tienda101 - Fastify - Ventas
 
 ## Hexagonal
 
@@ -16,19 +16,17 @@
 ## curl
 
 ```sh
-# get all personas
-curl http://localhost:3002/api/personas
+# get all ventas
+curl http://localhost:3003/api/ventas
 
-# create persona
-curl -X POST http://localhost:3002/api/personas -H "Content-Type: application/json" -d '{"nombre": "Ana"}'
+# get venta
+curl http://localhost:3003/api/ventas/1
 
-# get persona
-curl http://localhost:3002/api/personas/1
+# create venta
+curl -X POST http://localhost:3003/api/ventas -H "Content-Type: application/json" -d '{"persona_id": 1, "producto_id": 1, "precio": 15, "cantidad": 1}'
 
-# update persona
-curl -X PUT http://localhost:3002/api/personas/1 -H "Content-Type: application/json" -d '{"nombre": "Betty"}'
+# update venta
+curl -X PUT http://localhost:3002/api/ventas/1 -H "Content-Type: application/json" -d '{"cantidad": 2}'
 
-# delete persona
-curl -X DELETE http://localhost:3002/api/personas/1
-
-```
+# delete venta
+curl -X DELETE http://localhost:3002/api/ventas/1

@@ -43,7 +43,7 @@ Given('que el servicio está corriendo', async function () {
 
 When('hago una solicitud GET a {string}', async function (route) {
     // this.response = await page.goto(`http://localhost:3000${route}`, { waitUntil: 'networkidle0' });
-    this.response = await app.inject({ url: `http://localhost:3000${route}` });
+    this.response = await app.inject({ url: `http://localhost:3001${route}` });
     this.responseBody = await this.response.json();
 });
 
