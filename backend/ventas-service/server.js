@@ -1,12 +1,12 @@
 const app = require('./app');
 
-
-const PORT = process.env.PORT || 3003;
+const PORT = process.env.PORT || 3000;
+const NAME = process.env.NAME || 'SERVICE';
 
 const start = async () => {
     try {
         await app.listen({ port: PORT, host: '0.0.0.0' });
-        app.log.info('Ventas Service');
+        app.log.info(NAME);
         // app.log.info(`Server corriendo en http://localhost:${PORT}`);
     } catch (err) {
         app.log.error(err);

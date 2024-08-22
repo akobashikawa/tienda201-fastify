@@ -1,15 +1,14 @@
 const axios = require('axios');
 
-const productosServiceUrl = 'http://localhost:3001/api/productos';
-
 class ProductosService {
 
-    constructor() {
+    constructor({ url }) {
+        this.url = url;
     }
 
     async getItemById(id) {
         try {
-            const response = await axios.get(`${productosServiceUrl}/${id}`);;
+            const response = await axios.get(`${this.url}/${id}`);;
             return response.data;
         } catch (error) {
             return null;
@@ -18,7 +17,7 @@ class ProductosService {
 
     async createItem(data) {
         try {
-            const response = await axios.post(`${productosServiceUrl}/${id}`, data);;
+            const response = await axios.post(`${this.url}/${id}`, data);;
             return response.data;
         } catch (error) {
             return null;
@@ -26,7 +25,7 @@ class ProductosService {
     }
 
     async updateItem(id, data) {
-        const response = await axios.put(`${productosServiceUrl}/${id}`, data);;
+        const response = await axios.put(`${this.url}/${id}`, data);;
         return response.data;
     }
 

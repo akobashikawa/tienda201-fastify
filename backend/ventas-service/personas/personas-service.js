@@ -1,15 +1,14 @@
 const axios = require('axios');
 
-const personasServiceUrl = 'http://localhost:3002/api/personas';
-
 class PersonasService {
 
-    constructor() {
+    constructor({ url }) {
+        this.url = url;
     }
 
     async getItemById(id) {
         try {
-            const { data: item } = await axios.get(`${personasServiceUrl}/${id}`);;
+            const { data: item } = await axios.get(`${this.url}/${id}`);;
             return item;
         } catch (error) {
             return null;
@@ -18,7 +17,7 @@ class PersonasService {
 
     async createItem(data) {
         try {
-            const response = await axios.post(`${personasServiceUrl}/${id}`, data);;
+            const response = await axios.post(`${this.url}/${id}`, data);;
             return response.data;
         } catch (error) {
             return null;
