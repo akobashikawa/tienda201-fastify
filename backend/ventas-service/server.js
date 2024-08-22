@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 3003;
 const start = async () => {
     try {
         await app.listen({ port: PORT, host: '0.0.0.0' });
+        app.log.info('Ventas Service');
         // app.log.info(`Server corriendo en http://localhost:${PORT}`);
     } catch (err) {
         app.log.error(err);
