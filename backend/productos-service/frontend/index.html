@@ -308,7 +308,7 @@
     <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
 
     <script>
-        const productosServiceUrl = `http://localhost:3001/api/productos`;
+        const PRODUCTOS_SERVICE_URL = `http://localhost:3001/api/productos`;
         // const personasServiceUrl = `http://localhost:3001/api/personas`;
         // const ventasServiceUrl = `http://localhost:3001/api/ventas`;
 
@@ -336,12 +336,12 @@
                 let productos = ref([]);
 
                 const getProductos = async () => {
-                    const { data } = await axios.get(productosServiceUrl);
+                    const { data } = await axios.get(PRODUCTOS_SERVICE_URL);
                     productos.value = data;
                 };
 
                 const getProducto = async (id) => {
-                    const { data } = await axios.get(`${productosServiceUrl}/${id}`);
+                    const { data } = await axios.get(`${PRODUCTOS_SERVICE_URL}/${id}`);
                     producto.value = data;
                 };
 
@@ -372,7 +372,7 @@
 
                 const createProducto = async () => {
                     const body = producto.value;
-                    const { data } = await axios.post(productosServiceUrl, body);
+                    const { data } = await axios.post(PRODUCTOS_SERVICE_URL, body);
                     await getProductos();
                 };
 
@@ -388,7 +388,7 @@
 
                 const updateProducto = async () => {
                     const body = producto.value;
-                    const { data } = await axios.put(`${productosServiceUrl}/${body.id}`, body);
+                    const { data } = await axios.put(`${PRODUCTOS_SERVICE_URL}/${body.id}`, body);
                     await getProductos();
                 };
 

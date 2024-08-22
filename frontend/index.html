@@ -308,9 +308,9 @@
     <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
 
     <script>
-        const productosServiceUrl = `http://localhost:3001/api/productos`;
-        const personasServiceUrl = `http://localhost:3002/api/personas`;
-        const ventasServiceUrl = `http://localhost:3003/api/ventas`;
+        const PRODUCTOS_SERVICE_URL = `http://localhost:3001/api/productos`;
+        const PERSONAS_SERVICE_URL = `http://localhost:3002/api/personas`;
+        const VENTAS_SERVICE_URL = `http://localhost:3003/api/ventas`;
 
         const { createApp, ref, onMounted } = Vue;
 
@@ -336,12 +336,12 @@
                 let productos = ref([]);
 
                 const getProductos = async () => {
-                    const { data } = await axios.get(productosServiceUrl);
+                    const { data } = await axios.get(PRODUCTOS_SERVICE_URL);
                     productos.value = data;
                 };
 
                 const getProducto = async (id) => {
-                    const { data } = await axios.get(`${productosServiceUrl}/${id}`);
+                    const { data } = await axios.get(`${PRODUCTOS_SERVICE_URL}/${id}`);
                     producto.value = data;
                 };
 
@@ -372,7 +372,7 @@
 
                 const createProducto = async () => {
                     const body = producto.value;
-                    const { data } = await axios.post(productosServiceUrl, body);
+                    const { data } = await axios.post(PRODUCTOS_SERVICE_URL, body);
                     await getProductos();
                 };
 
@@ -388,7 +388,7 @@
 
                 const updateProducto = async () => {
                     const body = producto.value;
-                    const { data } = await axios.put(`${productosServiceUrl}/${body.id}`, body);
+                    const { data } = await axios.put(`${PRODUCTOS_SERVICE_URL}/${body.id}`, body);
                     await getProductos();
                 };
 
@@ -396,12 +396,12 @@
                 let personas = ref([]);
 
                 const getPersonas = async () => {
-                    const { data } = await axios.get(personasServiceUrl);
+                    const { data } = await axios.get(PERSONAS_SERVICE_URL);
                     personas.value = data;
                 };
 
                 const getPersona = async (id) => {
-                    const { data } = await axios.get(`${personasServiceUrl}/${id}`);
+                    const { data } = await axios.get(`${PERSONAS_SERVICE_URL}/${id}`);
                     persona.value = data;
                 };
 
@@ -429,7 +429,7 @@
 
                 const createPersona = async () => {
                     const body = persona.value;
-                    const { data } = await axios.post(personasServiceUrl, body);
+                    const { data } = await axios.post(PERSONAS_SERVICE_URL, body);
                     await getPersonas();
                 };
 
@@ -445,7 +445,7 @@
 
                 const updatePersona = async () => {
                     const body = persona.value;
-                    const { data } = await axios.put(`${personasServiceUrl}/${body.id}`, body);
+                    const { data } = await axios.put(`${PERSONAS_SERVICE_URL}/${body.id}`, body);
                     await getPersonas();
                 };
 
@@ -460,7 +460,7 @@
                 const createVenta = async () => {
                     const body = venta.value;
                     try {
-                        const { data } = await axios.post(ventasServiceUrl, body);
+                        const { data } = await axios.post(VENTAS_SERVICE_URL, body);
                     } catch (error) {
                         errorMessage.value = error.response.data ? error.response.data.error : false;
                     } finally {
@@ -473,12 +473,12 @@
                 let ventas = ref([]);
 
                 const getVentas = async () => {
-                    const { data } = await axios.get(ventasServiceUrl);
+                    const { data } = await axios.get(VENTAS_SERVICE_URL);
                     ventas.value = data;
                 };
 
                 const getVenta = async (id) => {
-                    const { data } = await axios.get(`${ventasServiceUrl}/${id}`);
+                    const { data } = await axios.get(`${VENTAS_SERVICE_URL}/${id}`);
                     venta.value = data;
                 };
 
@@ -517,7 +517,7 @@
 
                 const updateVenta = async () => {
                     const body = venta.value;
-                    const { data } = await axios.put(`${ventasServiceUrl}/${body.id}`, body);
+                    const { data } = await axios.put(`${VENTAS_SERVICE_URL}/${body.id}`, body);
                     await getVentas();
                     await getProductos();
                 };

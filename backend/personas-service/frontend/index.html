@@ -309,7 +309,7 @@
 
     <script>
         // const productosServiceUrl = `http://localhost:3000/api/productos`;
-        const personasServiceUrl = `http://localhost:3000/api/personas`;
+        const PERSONAS_SERVICE_URL = `http://localhost:3000/api/personas`;
         // const ventasServiceUrl = `http://localhost:3000/api/ventas`;
 
         const { createApp, ref, onMounted } = Vue;
@@ -396,12 +396,12 @@
                 let personas = ref([]);
 
                 const getPersonas = async () => {
-                    const { data } = await axios.get(personasServiceUrl);
+                    const { data } = await axios.get(PERSONAS_SERVICE_URL);
                     personas.value = data;
                 };
 
                 const getPersona = async (id) => {
-                    const { data } = await axios.get(`${personasServiceUrl}/${id}`);
+                    const { data } = await axios.get(`${PERSONAS_SERVICE_URL}/${id}`);
                     persona.value = data;
                 };
 
@@ -429,7 +429,7 @@
 
                 const createPersona = async () => {
                     const body = persona.value;
-                    const { data } = await axios.post(personasServiceUrl, body);
+                    const { data } = await axios.post(PERSONAS_SERVICE_URL, body);
                     await getPersonas();
                 };
 
@@ -445,7 +445,7 @@
 
                 const updatePersona = async () => {
                     const body = persona.value;
-                    const { data } = await axios.put(`${personasServiceUrl}/${body.id}`, body);
+                    const { data } = await axios.put(`${PERSONAS_SERVICE_URL}/${body.id}`, body);
                     await getPersonas();
                 };
 
