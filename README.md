@@ -11,7 +11,32 @@
 
 - **Productos Service**
     - PORT: 3001
+
+```sh
+cd backend/productos-service
+npm install
+npm test
+npm run dev
+```
+
 - **Personas Service**
     - PORT: 3002
+
+
+```sh
+cd backend/personas-service
+npm install
+npm test
+npm run dev
+```
+
 - **Ventas Service**
     - PORT: 3003
+
+
+```sh
+cd backend/ventas-service
+npm install
+npm test
+npm run dev
+```
